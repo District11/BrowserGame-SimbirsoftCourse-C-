@@ -35,25 +35,27 @@ namespace Browser_game
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<ApplicationDbContext>(options =>
+
+
+            //
+            services.AddAuthentication()
+               .AddGoogle(googleOptions =>
+               {
+                   googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
+                   googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+               })
+                .AddFacebook(facebookOptions =>
+            {
+                facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
+                facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+            });
+          
+
+ services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-
-
-
-            services.AddAuthentication().AddFacebook(facebookOptions =>
-            {
-                facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
-                facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
-            })
-            .AddGoogle(googleOptions =>
-              {
-                  googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
-                  googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
-              });
-
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
