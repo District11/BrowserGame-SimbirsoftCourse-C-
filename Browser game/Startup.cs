@@ -37,7 +37,7 @@ namespace Browser_game
 
 
 
-            //
+            //Аунтефикация пользователей в сервисах Google и Facebook с помощью OWIN
             services.AddAuthentication()
                .AddGoogle(googleOptions =>
                {
@@ -52,12 +52,13 @@ namespace Browser_game
           
 
  services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            //задает режим совместимости в ASP.NET Core 2.2:
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
