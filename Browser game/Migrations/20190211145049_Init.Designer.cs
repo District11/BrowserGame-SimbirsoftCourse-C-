@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace Browser_game.Data.Migrations
+namespace Browser_game.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190206115210_Init")]
+    [Migration("20190211145049_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
