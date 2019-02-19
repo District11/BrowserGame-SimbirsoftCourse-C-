@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Browser_game.Models.Player>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Содайте нового игрока</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NickName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Expirians)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NickName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Expirians)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PlayerID">Редактировать</a> |
+                <a asp-action="Details" asp-route-id="@item.PlayerID">Информация</a> |
+                <a asp-action="Delete" asp-route-id="@item.PlayerID">Удалить</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
