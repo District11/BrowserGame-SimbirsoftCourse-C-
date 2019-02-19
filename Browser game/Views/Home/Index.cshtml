@@ -22,7 +22,7 @@
 <div class="text-center">
     @if (SignInManager.IsSignedIn(User))
     {
-        <h1 class="display-4">@User.Identity.Name<br /><br />Необходимо создать персонаж</h1>
+        <h1 class="display-4">@User.Identity.Name<br /><br />Для дальнешей игры вам нужно выбрать персонажа</h1>
         <form action="\Players\Index">
             <button class="knopka">Выбрать</button>
         </form>

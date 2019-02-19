@@ -7,7 +7,7 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Содайте нового игрока</a>
 </p>
 <table class="table">
     <thead>
@@ -37,9 +37,9 @@
                 @Html.DisplayFor(modelItem => item.Expirians)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.PlayerID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.PlayerID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.PlayerID">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.PlayerID">Редактировать</a> |
+                <a asp-action="Details" asp-route-id="@item.PlayerID">Информация</a> |
+                <a asp-action="Delete" asp-route-id="@item.PlayerID">Удалить</a>
             </td>
         </tr>
 }
