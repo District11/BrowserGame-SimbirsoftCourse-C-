@@ -14,11 +14,12 @@ using Browser_game.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
+
 namespace Browser_game
 {
     public class Startup
     {
-        private object path2=;
+        private object path2= @"C:\Users\Азат\Documents\Visual Studio 2017\Projects\Browser game\logger11.txt";
 
         public Startup(IConfiguration configuration)
         {
