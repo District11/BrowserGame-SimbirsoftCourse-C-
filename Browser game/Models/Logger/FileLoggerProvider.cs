@@ -8,7 +8,7 @@ namespace Browser_game.Models.Logger
 {
     public class FileLoggerProvider:ILoggerProvider
     {
-        {
+        
             private string filePath;
 
             public FileLoggerProvider(string _filePath)
@@ -23,6 +23,6 @@ namespace Browser_game.Models.Logger
             public void Dispose()
             {
             }
-        }
+        
     }
 }

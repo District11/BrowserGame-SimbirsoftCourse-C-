@@ -1,0 +1,10 @@
+Request starting HTTP/2.0 GET https://localhost:44391/  
+Executing endpoint 'Browser_game.Controllers.HomeController.Index (Browser game)'
+Route matched with {action = "Index", controller = "Home", page = "", area = ""}. Executing action Browser_game.Controllers.HomeController.Index (Browser game)
+Executing action method Browser_game.Controllers.HomeController.Index (Browser game) - Validation state: Valid
+Executed action method Browser_game.Controllers.HomeController.Index (Browser game), returned result Microsoft.AspNetCore.Mvc.ViewResult in 1.8706ms.
+Executing ViewResult, running view Index.
+Executed ViewResult - view Index executed in 722.4112ms.
+Executed action Browser_game.Controllers.HomeController.Index (Browser game) in 795.2204ms
+Executed endpoint 'Browser_game.Controllers.HomeController.Index (Browser game)'
+Request finished in 1068.4076ms 200 text/html; charset=utf-8

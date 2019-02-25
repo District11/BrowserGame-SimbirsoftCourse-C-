@@ -22,7 +22,7 @@ namespace Browser_game
 {
     public class Startup
     {
-        private object path2= @"C:\Users\Азат\Documents\Visual Studio 2017\Projects\Browser game\logger11.txt";
+        private string path2= @"C:\Users\Азат\Documents\Visual Studio 2017\Projects\Browser game\logger11.txt";
 
         public Startup(IConfiguration configuration)
         {
@@ -68,7 +68,7 @@ namespace Browser_game
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
