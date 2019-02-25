@@ -18,6 +18,8 @@ namespace Browser_game
 {
     public class Startup
     {
+        private object path2=;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -75,6 +77,9 @@ namespace Browser_game
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            loggerFactory.AddFile(Path.Combine(Directory.GetCurrentDirectory(), path2));
+            var logger = loggerFactory.CreateLogger("FileLogger11");
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
