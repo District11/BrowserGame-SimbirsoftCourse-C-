@@ -1,0 +1,36 @@
+﻿@model Browser_game.Models.Player
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Информация об игроке</h1>
+
+<div>
+    <h4>Игрок</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NickName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NickName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Expirians)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Expirians)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.PlayerID">Редактировать</a> |
+    <a asp-action="Index">Назад</a>
+</div>

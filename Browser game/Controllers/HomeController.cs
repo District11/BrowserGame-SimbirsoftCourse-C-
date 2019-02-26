@@ -19,6 +19,28 @@ namespace Browser_game.Controllers
         {
             return View();
         }
+        public IActionResult Create(Player player)
+        {
+       
+            if (string.IsNullOrEmpty(player.NickName))
+            {
+                ModelState.AddModelError("Никнейм", "Некорректный никнейм, поробуйте ввести другой");
+            }
+            else if (player.NickName.Length > 2)
+            {
+                ModelState.AddModelError("Никнейм", "Недопустимая длина строки");
+            }
+
+
+            if (ModelState.IsValid)
+            {
+                ViewBag.Message = "Валидация пройдена";
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.Message = "Запрос не прошел валидацию";
+            return View();
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

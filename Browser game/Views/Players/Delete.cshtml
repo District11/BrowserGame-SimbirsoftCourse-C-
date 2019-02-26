@@ -1,0 +1,39 @@
+﻿@model Browser_game.Models.Player
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Удаление Игрока</h1>
+
+<h3>Вы действительно хотите удалить существуещего игрока?</h3>
+<div>
+    <h4>Игрок</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NickName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NickName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Expirians)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Expirians)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="PlayerID" />
+        <input type="submit" value="Удалить" class="btn btn-danger" /> |
+        <a asp-action="Index">Назад</a>
+    </form>
+</div>
