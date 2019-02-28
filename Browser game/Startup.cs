@@ -22,7 +22,7 @@ namespace Browser_game
 {
     public class Startup
     {
-        private string path2= @"C:\Users\Азат\Documents\Visual Studio 2017\Projects\Browser game\logger11.txt";
+        private string path2= @"C:\Users\Азат\Documents\Visual Studio 2017\Projects\Browser game\logs\Data_logger.log";
 
         public Startup(IConfiguration configuration)
         {
@@ -83,7 +83,7 @@ namespace Browser_game
             }
 
             loggerFactory.AddFile(Path.Combine(Directory.GetCurrentDirectory(), path2));
-            var logger = loggerFactory.CreateLogger("FileLogger11");
+            var logger = loggerFactory.CreateLogger("FileLogger");
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
