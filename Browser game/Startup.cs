@@ -85,6 +85,8 @@ namespace Browser_game
             loggerFactory.AddFile(Path.Combine(Directory.GetCurrentDirectory(), path2));
             var logger = loggerFactory.CreateLogger("FileLogger");
 
+            app.UseExceptionHandler("/error");
+            app.UseStatusCodePagesWithReExecute("/Error/Error");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
