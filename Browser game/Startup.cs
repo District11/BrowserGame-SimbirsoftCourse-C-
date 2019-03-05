@@ -13,11 +13,17 @@ using Microsoft.EntityFrameworkCore;
 using Browser_game.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using System.IO;
+using Browser_game.Models.Logger;
+
 
 namespace Browser_game
 {
     public class Startup
     {
+        private string path2= @"C:\Users\Азат\Documents\Visual Studio 2017\Projects\Browser game\logs\Data_logger.log";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -62,7 +68,7 @@ namespace Browser_game
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -75,6 +81,9 @@ namespace Browser_game
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            loggerFactory.AddFile(Path.Combine(Directory.GetCurrentDirectory(), path2));
+            var logger = loggerFactory.CreateLogger("FileLogger");
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
