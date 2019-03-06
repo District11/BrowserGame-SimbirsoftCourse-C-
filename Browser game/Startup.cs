@@ -41,7 +41,8 @@ namespace Browser_game
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
+            //
+            services.AddDbContext<IApplicationBuilder>(options=>options.UseSqlServer)
 
             //Аунтефикация пользователей в сервисах Google и Facebook с помощью OWIN
             services.AddAuthentication()
