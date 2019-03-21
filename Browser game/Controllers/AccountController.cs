@@ -9,6 +9,7 @@ using Browser_game.ViewModels;
 
 namespace Browser_game.Controllers
 {
+
     public class AccountController : Controller
     {
         private readonly UserManager<User> _userManager;

@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Browser_game.Models;
 using Browser_game.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Browser_game.Controllers
 {
+    
     public class UsersController : Controller
     {
         UserManager<User> _userManager;
