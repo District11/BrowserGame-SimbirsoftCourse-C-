@@ -9,9 +9,14 @@ using Browser_game.ViewModels;
 
 namespace Browser_game.Controllers
 {
-
+    /// <summary>
+    /// Контроллер в котором имеется метод для регистрации пользователя
+    /// </summary>
     public class AccountController : Controller
     {
+        /// <summary>
+        /// Инциализация поля для пользователя
+        /// </summary>
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
 
@@ -25,12 +30,18 @@ namespace Browser_game.Controllers
         {
             return View();
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
                 User user = new User { Email = model.Email, UserName = model.Email, Year = model.Year };
+         
                 // добавляем пользователя
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -49,6 +60,11 @@ namespace Browser_game.Controllers
             }
             return View(model);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
 
         [HttpGet]
         public IActionResult Login(string returnUrl = null)
@@ -83,7 +99,10 @@ namespace Browser_game.Controllers
             }
             return View(model);
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> LogOff()

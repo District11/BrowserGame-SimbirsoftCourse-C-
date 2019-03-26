@@ -21,6 +21,11 @@ namespace Browser_game.Controllers
         {
             return View();
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="player"></param>
+        /// <returns></returns>
         public IActionResult Create(Player player)
         {
        
