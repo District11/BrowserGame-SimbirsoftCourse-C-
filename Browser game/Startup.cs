@@ -16,7 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.IO;
 using Browser_game.Models.Logger;
-
+using Browser_game.Models;
 
 namespace Browser_game
 {
@@ -41,8 +41,6 @@ namespace Browser_game
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
-
             //Аунтефикация пользователей в сервисах Google и Facebook с помощью OWIN
             services.AddAuthentication()
                .AddGoogle(googleOptions =>
@@ -55,13 +53,18 @@ namespace Browser_game
                 facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
                 facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
             });
-          
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>()
-                .AddDefaultUI(UIFramework.Bootstrap4)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+
+           
+            services.AddEntityFrameworkNpgsql()
+                .AddDbContext<ApplicationDbContext>(options =>
+                options.UseNpgsql(
+                    Configuration.GetConnectionString("DefaultConnection")));
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders()
+                .AddDefaultUI(UIFramework.Bootstrap4);
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             //задает режим совместимости в ASP.NET Core 2.2:
@@ -85,12 +88,10 @@ namespace Browser_game
             loggerFactory.AddFile(Path.Combine(Directory.GetCurrentDirectory(), path2));
             var logger = loggerFactory.CreateLogger("FileLogger");
 
-            app.UseExceptionHandler("/error");
-            app.UseStatusCodePagesWithReExecute("/Error/Error");
+         
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
             app.UseAuthentication();
 
             app.UseMvc(routes =>

@@ -5,9 +5,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Browser_game.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Browser_game.Controllers
 {
+    
     public class HomeController : Controller
     {
         public IActionResult Index()
