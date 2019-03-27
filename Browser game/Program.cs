@@ -16,6 +16,10 @@ namespace Browser_game
 {
     public class Program
     {
+        /// <summary>
+        /// Инциализатор базы данных
+        /// </summary>
+        /// <param name="args"></param>
         public static void Main(string[] args)
         {
             var host = CreateWebHostBuilder(args).Build();

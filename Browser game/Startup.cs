@@ -40,8 +40,9 @@ namespace Browser_game
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
-            //Аунтефикация пользователей в сервисах Google и Facebook с помощью OWIN
+            /// <summary>
+            /// Аунтефикация пользователей в сервисах Google и Facebook с помощью OWIN
+            /// </summary>         
             services.AddAuthentication()
                .AddGoogle(googleOptions =>
                {
@@ -70,8 +71,13 @@ namespace Browser_game
             //задает режим совместимости в ASP.NET Core 2.2:
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        /// <summary>
+        ///  // Этот метод вызывается во время выполнения. Используйте этот метод для настройки конвейера HTTP-запроса.
+        /// </summary>
+        /// <param name="app"></param>
+        /// <param name="env"></param>
+        /// <param name="loggerFactory"></param>
+               public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -88,12 +94,25 @@ namespace Browser_game
             loggerFactory.AddFile(Path.Combine(Directory.GetCurrentDirectory(), path2));
             var logger = loggerFactory.CreateLogger("FileLogger");
 
-         
+            /// <summary>
+            /// Установка обработчика ошибок
+            /// </summary>
             app.UseHttpsRedirection();
+            /// <summary>
+            /// Установка обработчика статических файлов
+            /// </summary>
             app.UseStaticFiles();
+            /// <summary>
+            /// Установка GDPR
+            /// </summary>
             app.UseCookiePolicy();
+            /// <summary>
+            /// Установка аунтетификации
+            /// </summary>
             app.UseAuthentication();
-
+            /// <summary>
+            /// Установка компонентов MVC для обработки запроса
+            /// </summary>
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

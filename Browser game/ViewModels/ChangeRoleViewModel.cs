@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 
-
+/// <summary>
+/// Модель позволяющая управлять всеми ролями для одного пользователя 
+/// </summary>
 namespace Browser_game.ViewModels
 {
     public class ChangeRoleViewModel

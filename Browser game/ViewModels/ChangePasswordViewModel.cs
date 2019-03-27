@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+/// <summary>
+/// Модель для изменения пароля пользователя
+/// </summary>
 namespace Browser_game.ViewModels
 {
     public class ChangePasswordViewModel
