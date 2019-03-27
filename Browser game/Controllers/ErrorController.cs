@@ -6,7 +6,9 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Browser_game.Controllers
-{
+{/// <summary>
+/// Контроллер ошибок
+/// </summary>
     public class ErrorController : Controller
     {
         public new int StatusCode { get; }
@@ -16,7 +18,10 @@ namespace Browser_game.Controllers
         {
             return View("Error");
         }
-
+        /// <summary>
+        /// Методобработки ошибок 
+        /// </summary>
+      
         public IActionResult Error(int? id, int statusCode = 404)
         {
             //StatusCode = statusCode;
