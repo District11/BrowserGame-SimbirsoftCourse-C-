@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Identity;
-using Browser_game.Data;
 
-namespace Browser_game.Models
+
+namespace Bg_DAL
 { /// <summary>
-/// Класс пользователя 
+/// Класс пользователя пользователя 
 /// </summary>
     public class User : IdentityUser
     {/// <summary>

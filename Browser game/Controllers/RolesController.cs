@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Browser_game.Controllers
 {
-    
+    [Authorize(Roles = "Admin")]
     public class RolesController : Controller
     {
         RoleManager<IdentityRole> _roleManager;
