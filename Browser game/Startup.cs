@@ -10,13 +10,16 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Browser_game.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.IO;
 using Browser_game.Models.Logger;
 using Browser_game.Models;
+using Bg_DAL;
+using Bg_DAL.Data;
+using Bg_DAL.Models;
+using Bg_DAL.Services;
 
 namespace Browser_game
 {
@@ -55,12 +58,9 @@ namespace Browser_game
                 facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
             });
 
-
+            services.AddDAL(Configuration);
+            services.AddScoped<IPlayerDataServices, IPlayerDataServices>();
            
-            services.AddEntityFrameworkNpgsql()
-                .AddDbContext<ApplicationDbContext>(options =>
-                options.UseNpgsql(
-                    Configuration.GetConnectionString("DefaultConnection")));
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders()

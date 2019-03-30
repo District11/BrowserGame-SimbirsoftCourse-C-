@@ -5,24 +5,29 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Browser_game.Data;
 using Browser_game.Models;
+using Bg_DAL.Services;
+using Bg_DAL;
 
 namespace Browser_game.Controllers
 {
     public class PlayersController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IPlayerDataServices _player;
 
-        public PlayersController(ApplicationDbContext context)
+        public PlayersController(IPlayerDataServices player)
         {
-            _context = context;
+            _player =player;
         }
 
         // GET: Players
+        /// <summary>
+        /// Получает список игроков 
+        /// </summary>
+        /// <returns></returns>
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Player.ToListAsync());
+            return View("Index", await _player.GetPlayerData(HttpContext.User.Identity.Name));
         }
 
         // GET: Players/Details/5
@@ -33,8 +38,8 @@ namespace Browser_game.Controllers
                 return NotFound();
             }
 
-            var player = await _context.Player
-                .FirstOrDefaultAsync(m => m.PlayerID == id);
+            var player = await _player.GetDetails((int)id);
+        
             if (player == null)
             {
                 return NotFound();
@@ -42,7 +47,10 @@ namespace Browser_game.Controllers
 
             return View(player);
         }
-
+        /// <summary>
+        /// Получаем страницу создание игрока
+        /// </summary>
+        /// <returns></returns>
         // GET: Players/Create
         public IActionResult Create()
         {
@@ -58,14 +66,19 @@ namespace Browser_game.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(player);
-                await _context.SaveChangesAsync();
+                
+                await _player.CreatePlayer(player);
                 return RedirectToAction(nameof(Index));
             }
             return View(player);
         }
 
         // GET: Players/Edit/5
+        /// <summary>
+        /// Получает стр редактирование игрока
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,7 +86,7 @@ namespace Browser_game.Controllers
                 return NotFound();
             }
 
-            var player = await _context.Player.FindAsync(id);
+            var player = await _player.GetDetails((int)id);
             if (player == null)
             {
                 return NotFound();
@@ -82,6 +95,12 @@ namespace Browser_game.Controllers
         }
 
         // POST: Players/Edit/5
+        /// <summary>
+        ///  Редактирование игрока информации об игроке
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="player"></param>
+        /// <returns></returns>
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -97,16 +116,10 @@ namespace Browser_game.Controllers
             {
                 try
                 {
-                    _context.Update(player);
-                    await _context.SaveChangesAsync();
+                    await _player.UpdatePlayer(player);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PlayerExists(player.PlayerID))
-                    {
-                        return NotFound();
-                    }
-                    else
                     {
                         throw;
                     }
@@ -117,15 +130,18 @@ namespace Browser_game.Controllers
         }
 
         // GET: Players/Delete/5
+        /// <summary>
+        /// Получает стр удаление информации об игроке
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
-            var player = await _context.Player
-                .FirstOrDefaultAsync(m => m.PlayerID == id);
+            var player = await _player.GetDetails((int)id);
             if (player == null)
             {
                 return NotFound();
@@ -135,19 +151,19 @@ namespace Browser_game.Controllers
         }
 
         // POST: Players/Delete/5
+        /// <summary>
+        /// Удаляет информацию об игроке
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var player = await _context.Player.FindAsync(id);
-            _context.Player.Remove(player);
-            await _context.SaveChangesAsync();
+
+            await _player.DeletePlayer(id);
             return RedirectToAction(nameof(Index));
         }
-
-        private bool PlayerExists(int id)
-        {
-            return _context.Player.Any(e => e.PlayerID == id);
-        }
+ 
     }
 }
