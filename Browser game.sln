@@ -5,9 +5,9 @@ VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Browser game", "Browser game\Browser game.csproj", "{702B9BF3-C470-4740-8978-CB5F890B102C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DLL", "DLL\DLL.csproj", "{B3652809-3D65-4BD4-9ADF-CF846B45A22A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bg_DAL", "DLL\Bg_DAL.csproj", "{B3652809-3D65-4BD4-9ADF-CF846B45A22A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{A71C4D5A-2364-4CB0-9B4B-DD1DB54B45F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bg_BAL", "BLL\Bg_BAL.csproj", "{A71C4D5A-2364-4CB0-9B4B-DD1DB54B45F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
